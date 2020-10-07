@@ -3,7 +3,7 @@ import datetime as dt
 import json
 # REVIEW: no 2 empty lines before class (PEP8)
 class Record:
-    # REVIEW: no Docsring class
+    # REVIEW: no Docsring of the class
     def __init__(self, amount, comment, date=''):
         # REVIEW: no spaces before and after operator
         self.amount=amount
@@ -14,28 +14,29 @@ class Record:
         self.comment=comment
 # REVIEW: no 2 empty lines before class (PEP8)
 class Calculator:
-    # REVIEW: no Docsring class
+    # REVIEW: no Docsring of the class
     def __init__(self, limit):
         self.limit = limit
         # REVIEW: no spaces before and after operator
         self.records=[]
     # REVIEW: no free space between blocks
     def add_record(self, record):
-        # REVIEW: no Docsring method
+        # REVIEW: no Docsring of the method
         self.records.append(record)
     # REVIEW: no free space between functions
     def get_today_stats(self):
-        # REVIEW: no Docsring method
+        # REVIEW: no Docsring of the method
         # REVIEW: no spaces before and after operator
         today_stats=0
         # REVIEW: incorrect variable declaration, don't use capital letters
         for Record in self.records:
             if Record.date == dt.datetime.now().date():
+                # REVIEW: no spaces before and after operator
                 today_stats = today_stats+Record.amount
         return today_stats
     # REVIEW: no free space between functions
     def get_week_stats(self):
-        # REVIEW: no Docsring method
+        # REVIEW: no Docsring of the method
         # REVIEW: no spaces before and after operator
         week_stats=0
         today = dt.datetime.now().date()
@@ -49,11 +50,11 @@ class Calculator:
         return week_stats
 # REVIEW: no 2 empty lines before class (PEP8)
 class CaloriesCalculator(Calculator):
-    # REVIEW: no Docsring class
+    # REVIEW: no Docsring of the class
     # REVIEW: comment is bad-formatted, no dot at the end
     # REVIEW: the comment should be on a separate line above the variable
     def get_calories_remained(self): # Получает остаток калорий на сегодня
-        # REVIEW: no Docsring method
+        # REVIEW: no Docsring of the method
         # REVIEW: no spaces before and after operator
         # REVIEW: incorrect variable declaration, the variable name must be 
         # meaningful, not a single letter
@@ -65,7 +66,7 @@ class CaloriesCalculator(Calculator):
             return 'Хватит есть!'
 # REVIEW: no 2 empty lines before class (PEP8)
 class CashCalculator(Calculator):
-    # REVIEW: no Docsring class
+    # REVIEW: no Docsring of the class
     # REVIEW: no spaces before and after operator
     # REVIEW: comment should be in line above, not inline
     # REVIEW: constant variables should be declared right after the imports
@@ -77,7 +78,7 @@ class CashCalculator(Calculator):
     # REVIEW: do not pass constants to the function explicitly
     # REVIEW: incorrect names of the variables, do not use capital letters
     def get_today_cash_remained(self, currency, USD_RATE=USD_RATE, EURO_RATE=EURO_RATE):
-        # REVIEW: no Docsring method
+        # REVIEW: no Docsring of the method
         # REVIEW: no spaces before and after operator
         currency_type=currency
         cash_remained = self.limit - self.get_today_stats()
@@ -110,11 +111,13 @@ class CashCalculator(Calculator):
             return 'Денег нет, держись'
         elif cash_remained < 0:
             # REVIEW: length line more than 79 characters
+            # REVIEW: f'' string used incorrectly, no function calls should
+            # be inside of it
             return 'Денег нет, держись: твой долг - {0:.2f} {1}'.format(-cash_remained, currency_type)
 
     # REVIEW: method not used, delete it
     def get_week_stats(self):
-        # REVIEW: no Docsring method
+        # REVIEW: no Docsring of the method
         super().get_week_stats()
 # REVIEW: no construction if __name__ == ‘__main__’
 # REVIEW: no 1 empty line after whole code
